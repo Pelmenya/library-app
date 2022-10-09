@@ -1,38 +1,38 @@
-module.exports = {
-    plugins: [
+{
+    "plugins": [
         "@typescript-eslint",
         "eslint-comments",
         "jest",
         "promise",
         "import", 
-        "react",
+        "react"
     ],
-    extends: [
+    "extends": [
         "airbnb-typescript",
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking",
         "plugin:eslint-comments/recommended",
         "plugin:jest/recommended",
-        "plugin:promise/recommended",
+        "plugin:promise/recommended"
     ],
-    env: {
-        node: true,
-        browser: true,
-        jest: true,
+    "env": {
+        "node": true,
+        "browser": true,
+        "jest": true
     },
-    parserOptions: {
-        ecmaVersion: 2021,
-        sourceType: 'module',
-        project: "./tsconfig.json",
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
     },
-    rules: {
+    "rules": {
         // Indent with 4 spaces
         "indent": ["error", 4, { "SwitchCase": 1 }],
-        'max-len': ['error', {
-            code: 120,
-            comments: 120,
+        "max-len": ["error", {
+            "code": 120,
+            "comments": 120
         }],
-        '@typescript-eslint/indent': ["error", 4],
+        "@typescript-eslint/indent": ["error", 4],
         "quotes": ["error", "single"],
         "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
         "import/no-extraneous-dependencies": ["error", { "devDependencies": true, "optionalDependencies": false, "peerDependencies": false }],
@@ -48,12 +48,11 @@ module.exports = {
         "@typescript-eslint/explicit-module-boundary-types": "off",
         "@typescript-eslint/no-use-before-define": [
             "error",
-            { functions: false, classes: true, variables: true, typedefs: true },
+            { "functions": false, "classes": true, "variables": true, "typedefs": true }
         ],
         "class-methods-use-this": "off",
         "no-underscore-dangle": ["error", { "allow": ["_id"] }],
-        "no-param-reassign": ["error", { "props": false }],
+        "no-param-reassign": ["error", { "props": false }]
     },
-    ignorePatterns: ['*.config.js', '*.js', '*.cjs'],
-    
-};
+    "ignorePatterns": ["*.config.js", "*.js", "*.cjs"]
+}

@@ -5,13 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --passWithNoTests",
-    "unlink": "npm unlink -g",
     "eslint": "eslint . --fix",
     "build": "./node_modules/.bin/tsc",
     "compile": "tsc --noEmit",
     "validate": "npm-run-all compile test eslint",
     "prepare": "husky install",
-    "start": "node server.js"
+    "start": "npm run build && node -r dotenv/config server.js"
   },
   "engines": {
     "node": ">=14.17.4",
@@ -29,8 +28,9 @@
   },
   "homepage": "https://github.com/Pelmenya/library-app#readme",
   "devDependencies": {
+    "@types/express": "4.17.14",
     "@typescript-eslint/eslint-plugin": "5.39.0",
-    "@typescript-eslint/parser": "^5.39.0",
+    "@typescript-eslint/parser": "5.39.0",
     "dotenv": "16.0.3",
     "eslint": "8.25.0",
     "eslint-config-airbnb-typescript": "17.0.0",

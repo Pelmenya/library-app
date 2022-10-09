@@ -9,9 +9,9 @@
         /* Project */
         // TypeScript is not used for building, allow all modern features
         // Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018' or 'ESNEXT'.
-        "target": "ESNext",
+        "target": "ES5",
         // Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'.
-        "module": "ESNext",
+        "module": "CommonJS",
 
         /* Build */
         // Generates corresponding '.d.ts' file.
@@ -130,12 +130,11 @@
         },
     },
     "include": [
-        "src",
+        "src", "server.ts",
     ],
     "exclude": [
         "build",
         "node_modules",
         "./**/*.js",
-        "./.*.cjs",
-    ]
+    ],
 }

@@ -10,7 +10,8 @@
     "compile": "tsc --noEmit",
     "validate": "npm-run-all compile test eslint",
     "prepare": "husky install",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "npm run build && pm2 start ./build/server.js"
   },
   "engines": {
     "node": ">=14.17.4",
@@ -48,6 +49,7 @@
     "typescript": "4.8.4"
   },
   "dependencies": {
-    "express": "4.18.2"
+    "express": "4.18.2",
+    "pm2": "5.2.0"
   }
 }

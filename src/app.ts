@@ -1,4 +1,4 @@
-import express, { Request, Response, json } from 'express';
+import express, { Request, Response } from 'express';
 import { v4 as uuid } from 'uuid';
 
 import { ILibrary } from 'types/i-library';
@@ -28,7 +28,7 @@ const libraryDB: ILibrary = {
     users: [],
 };
 // body-parser
-app.use(json());
+app.use(express.json());
 
 app.post('/api/user/login', (req: Request, res: Response) => {
     const { id = '1', email = 'test1@email.com' } = req.body;
@@ -37,13 +37,11 @@ app.post('/api/user/login', (req: Request, res: Response) => {
 
     res.status(201);
     res.json(libraryDB.users.find((item) => item.id === id));
-    res.end();
 });
 
 app.get('/api/books', (req: Request, res: Response) => {
     res.status(200);
     res.json(libraryDB.books);
-    res.end();
 });
 
 app.get('/api/books/:id', (req: Request, res: Response) => {
@@ -53,10 +51,9 @@ app.get('/api/books/:id', (req: Request, res: Response) => {
     if (book) {
         res.status(200);
         res.json(book);
-        res.end();
     } else {
         res.status(404);
-        res.end();
+        res.send('Not Found');
     }
 
 });
@@ -71,10 +68,9 @@ app.post('/api/books', (req: Request, res: Response) => {
         if (book) {
             res.status(201);
             res.json(book);
-            res.end();
         } else {
             res.status(404);
-            res.end();
+            res.send('Not Found');
         }
     }
 });
@@ -85,16 +81,13 @@ app.put('/api/books/:id', (req: Request, res: Response) => {
     const book = libraryDB.books.findIndex((item) => item.id === id);
 
     if (book > -1 && req.body) {
-        libraryDB.books[book] = { id, ...req.body };
+        libraryDB.books[book] = { ...libraryDB.books[book], ...req.body };
         res.status(200);
-
-        res.json(book);
-        res.end();
+        res.json(libraryDB.books.find((item) => item.id === id));
     } else {
         res.status(404);
-        res.end();
+        res.send('Not Found');
     }
-
 });
 
 app.delete('/api/books/:id', (req: Request, res: Response) => {
@@ -106,11 +99,8 @@ app.delete('/api/books/:id', (req: Request, res: Response) => {
         libraryDB.books = libraryDB.books.filter((item) => item.id !== id);
         res.status(200);
         res.send('Ок');
-        res.end();
     } else {
         res.status(404);
-        res.end();
+        res.send('Not Found');
     }
-
-
 });

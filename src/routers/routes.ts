@@ -1,9 +1,10 @@
-export enum User {
+export enum UserRoutes {
     USER = '/api/user',
     LOGIN = '/login',
 }
 
-export enum Books {
+export enum BooksRoutes {
     BOOKS = '/api/books',
     ID = '/:id',
+    DOWNLOAD = '/download',
 }

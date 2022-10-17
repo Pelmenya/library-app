@@ -1,8 +1,8 @@
 import { loginUser } from '../controllers/user-controller';
 import { Router } from 'express';
-import { User } from './routes';
+import { UserRoutes } from './routes';
 
-const { USER, LOGIN } = User;
+const { USER, LOGIN } = UserRoutes;
 
 
 const userRouter = Router();

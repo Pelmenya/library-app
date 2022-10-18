@@ -1,8 +1,12 @@
-<div class="card" style="max-width: 428px; cursor: pointer; box-shadow: 0 0.1rem 0.2rem 0 rgb(0 0 0 / 5%);">
+<div 
+  class="card card_small" 
+  style="cursor: pointer; box-shadow: 0 0.1rem 0.2rem 0 rgb(0 0 0 / 5%);"
+  onclick="(() => { if (window) window.location.href = '/view/<%=book.id%>' })()"
+>
   <div class="row g-0">
     <div class="col-md-4">
       <% if (book.fileCover) { %>
-        <img src="public/books/<%=book.fileCover%>" class="img-fluid rounded-start" alt="<%=book.title%>">
+        <img src="/public/books/<%=book.fileCover%>" class="img-fluid rounded-start" alt="<%=book.title%>">
       <% } %>
     </div>
     <div class="col-md-8">
@@ -10,15 +14,7 @@
         <h5 class="card-title">
           <%=book.title%>
         </h5>
-        <p class="card-text" style="   
-              text-overflow: ellipsis;
-              overflow: hidden;
-              display: -webkit-box;
-              -webkit-line-clamp: 5;
-              -webkit-box-orient: vertical;
-              line-height: 1.2rem;
-              height: 6rem;
-            ">
+        <p class="card-text card-text_small">
           <%=book.description%>
         </p>
         <p class="card-text"><small class="text-muted">

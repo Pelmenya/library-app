@@ -7,7 +7,7 @@
         >
             <img 
                 style="width: 48px; height: 48px;" 
-                src="public/images/library.svg" 
+                src="/public/images/library.svg" 
                 alt="Лого библиотеки"
             >
             <p class="h3 m-0">Библиотека</p>
@@ -23,6 +23,13 @@
                 <i class="bi bi-plus-square"></i>
                 Добавить
             </button>
+            <%if (edit){%>
+                <button onclick="(() => { if (window) window.location.href = '/create' })()" type="button"
+                    class="btn btn-primary btn-lg">
+                    <i class="bi bi-pencil-square"></i>
+                    Редактировать
+                </button>
+            <%}%>    
         </div>
     </nav>
 </header>

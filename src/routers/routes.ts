@@ -8,3 +8,10 @@ export enum BooksRoutes {
     ID = '/:id',
     DOWNLOAD = '/download',
 }
+
+export enum ViewRoutes {
+    INDEX = '/index',
+    VIEW = '/view',
+    CREATE = '/create',
+    UPDATE = '/update',
+}

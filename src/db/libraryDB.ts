@@ -13,6 +13,7 @@ const libraryDB: ILibrary = {
                 'магическим реализмом Маркеса и с абсурдностью Беккета.Книга стала не' +
                 'только бестселлером, но и символом литературы нового века, флагом новой' +
                 'культуры.',
+            fileName: '1.pdf',
             fileBook: '1.pdf',
             fileCover: '1.png',
         },
@@ -22,6 +23,7 @@ const libraryDB: ILibrary = {
             authors: 'dd',
             favorite: 'dad',
             description: 'dasd asda sdasd',
+            fileName: '',
             fileBook: '',
             fileCover: '',
         }],

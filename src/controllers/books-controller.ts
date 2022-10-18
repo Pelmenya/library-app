@@ -89,7 +89,7 @@ const downLoadBook = (req: Request, res: Response) => {
     if (book?.fileBook) {
         res.status(200);
         const file = path.join(__dirname, '../..', `${publicBooksFilesDir}/${book.fileBook}`);
-        res.download(file);
+        res.download(file, book.fileName);
     } else {
         res.status(404);
         res.json(notFound404Text);

@@ -1,0 +1,15 @@
+<footer class="container p-3"
+    style="background: var(--bs-body-color); color: var(--bs-body-bg); display: flex; align-items: center; justify-content: center;">
+    <p class="m-0">
+        &copy;
+        <%=(()=> {
+            if (Number((new Date()).getFullYear()) === 2022) {
+                return '';
+            }
+            return (new Date()).getFullYear() +  ' - ';
+           })()
+        %>
+        <%=(new Date()).getFullYear()%>
+        Дмитрий Ляпин
+    </p>
+</footer>

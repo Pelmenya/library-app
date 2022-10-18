@@ -1,0 +1,28 @@
+<header class="container p-3" style="background: var(--bs-orange)">
+    <nav class="d-flex d-flex justify-content-between">
+        <div
+            class="d-flex align-items-center" 
+            style="gap: 16px; cursor: pointer;"
+            onclick="(() => { if (window) window.location.href = '/index' })()"
+        >
+            <img 
+                style="width: 48px; height: 48px;" 
+                src="public/images/library.svg" 
+                alt="Лого библиотеки"
+            >
+            <p class="h3 m-0">Библиотека</p>
+        </div>
+        <div class="d-flex" style="gap: 16px;">
+            <button onclick="(() => { if (window) window.location.href = '/index' })()" type="button"
+                class="btn btn-primary btn-lg">
+                <i class="bi bi-house-door"></i>
+                Главная
+            </button>
+            <button onclick="(() => { if (window) window.location.href = '/create' })()" type="button"
+                class="btn btn-primary btn-lg">
+                <i class="bi bi-plus-square"></i>
+                Добавить
+            </button>
+        </div>
+    </nav>
+</header>

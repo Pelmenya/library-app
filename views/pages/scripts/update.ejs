@@ -1,0 +1,8 @@
+<script>
+    const isFavorite = document.querySelector('#favoriteCheck');
+    isFavorite.addEventListener('click', () => {
+        if (isFavorite .checked) {
+            document.forms.book.favorite.value = 'true';
+        } else document.forms.book.favorite.value = 'false';
+    })
+</script>

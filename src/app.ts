@@ -6,12 +6,19 @@ import { notFound404 } from './middlewares/not-found-404';
 import { userRouter } from './routers/user-router';
 import { booksRouter } from './routers/books-router';
 import { viewRouter } from './routers/view-router';
+import { unionFilesFormDataLoader } from './middlewares/union-files-form-data-loader';
+import { methodOverride } from './middlewares/method-override';
+
 
 const app = express();
-
-
 // body-parser
 app.use(express.json());
+// query-parser
+app.use(express.urlencoded({ extended:  true }));
+// хранилище файлов, заодно парсим data из form-data в req.body
+app.use(unionFilesFormDataLoader);
+// подменяем метод запроса из html формы, если надо, т.к. при submit только post и get
+app.use(methodOverride);
 
 app.use(logger);
 

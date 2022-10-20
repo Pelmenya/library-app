@@ -6,6 +6,7 @@ import path from 'path';
 import { IBook } from 'types/i-book';
 import { TBookFiles } from 'types/t-book-files';
 import { notFound404Text, publicBooksFilesDir } from '../constants/constants';
+import { deleteBookFile } from '../functions/delete-book-file';
 
 const getBooks = (req: Request, res: Response) => {
     res.status(200);
@@ -55,13 +56,42 @@ const createBook = (req: Request, res: Response) => {
 
 const updateBook = (req: Request, res: Response) => {
     const { id } = req.params;
-
     const book = libraryDB.books.findIndex((item) => item.id === id);
 
+    const files = req.files as TBookFiles;
+
+
     if (book > -1 && req.body) {
-        libraryDB.books[book] = { ...libraryDB.books[book], ...req.body };
+        let fileBook = libraryDB.books[book].fileBook;
+        let fileCover = libraryDB.books[book].fileCover;
+        let fileName = libraryDB.books[book].fileName;
+    
+        if (files.fileBook) {
+            if (fileBook && fileBook !== '1.pdf') {
+                deleteBookFile(`${files.fileBook[0].destination}/${fileBook}`);
+            }
+
+            fileBook = files.fileBook[0].filename;
+            fileName = files.fileBook[0].originalname;
+        }
+        if (files.fileCover) {
+            if (fileCover && fileCover !== '1.png') {
+                deleteBookFile(`${files.fileCover[0].destination}/${fileCover}`);
+            }
+            fileCover = files.fileCover[0].filename;
+        }
+    
+        libraryDB.books[book] = { 
+            ...libraryDB.books[book], 
+            ...req.body, 
+            fileBook, 
+            fileName, 
+            fileCover,
+        };
+
         res.status(200);
-        res.json(libraryDB.books.find((item) => item.id === id));
+        res.redirect(`/view/${id}`);
+
     } else {
         res.status(404);
         res.json(notFound404Text);

@@ -24,7 +24,7 @@
                 Добавить
             </button>
             <%if (edit){%>
-                <button onclick="(() => { if (window) window.location.href = '/create' })()" type="button"
+                <button onclick="(() => { if (window) window.location.href = '/update/<%=book.id%>' })()" type="button"
                     class="btn btn-primary btn-lg">
                     <i class="bi bi-pencil-square"></i>
                     Редактировать

@@ -21,7 +21,7 @@ const libraryDB: ILibrary = {
             id: '2',
             title: 'Flowers',
             authors: 'Dick Chain Junior',
-            favorite: 'true',
+            favorite: 'false',
             description: 'Good Flowers',
             fileName: '',
             fileBook: '',

@@ -11,4 +11,7 @@ const storage = diskStorage({
     },
 });
 
-export default multer({ storage });
+const fields = [{ name: 'fileBook', maxCount: 1 }, { name: 'fileCover', maxCount: 1 }];
+
+export const unionFilesFormDataLoader = multer({ storage }).fields(fields);
+

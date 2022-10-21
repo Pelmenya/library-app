@@ -1,0 +1,30 @@
+<%- include('../html/html-start.ejs'); -%>
+<%- include('./styles/index'); -%>
+<%- include('../templates/header', {edit: false}); -%>
+    <main class="container mr-0 mt-3 mb-3 p-0 d-flex flex-direction-column; justify-content-between;"
+    style="height: calc(100vh - 168px); overflow-y: auto;"
+    >
+        <div class="container align-items-center">
+            <h1 class="h3 mb-4" style="text-align: center; display: none;">Книги</h1>
+            <% if (favoriteBooks.length) { %> 
+                <h1 class="h5 mb-4">Избранное: </h1>
+                <div class="mb-4 row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between g-3">
+                <% favoriteBooks.forEach((book) => { %>
+                    <%- include('../templates/book-card', { book, cardLarge: false }); %>
+                    <% }); %>
+                </div>
+            <% } %>
+            <% if (books.length) { %> 
+                <h1 class="h5 mb-4">
+                    <%=favoriteBooks.length ? 'Остальная литература': 'Литература' %>
+                </h1>
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between g-3">
+                <% books.forEach((book) => { %>
+                    <%- include('../templates/book-card', {book, cardLarge: false }); %>
+                    <% }); %>
+                </div>
+            <% } %>
+        </div>
+    </main>
+<%- include('../templates/footer'); -%>
+<%- include('../html/html-end.ejs'); -%>

@@ -1,0 +1,49 @@
+<form method="post" action="/api/books/<%= method ? book.id: ''%>" name="book" enctype="multipart/form-data">
+    <% if (method) { %>
+        <input type="hidden" name="method" value="<%=method%>">
+        <% } %>
+            <div class="mb-3">
+                <label for="title" class="form-label">Название книги</label>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Введите название"
+                    value="<%=book ? book.title : ''%>">
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Описание</label>
+                <textarea class="form-control" id="description" name="description"
+                    placeholder="Введите краткое описание книги" rows="5">
+                <%-book ? book.description.trim() : '' %>
+                </textarea>
+            </div>
+            <div class="mb-3">
+                <label for="authors" class="form-label">Авторы</label>
+                <input type="text" class="form-control" id="authors" name="authors" placeholder="Введите автора"
+                    value="<%=book ? book.authors : ''%>">
+            </div>
+            <div class="mb-3">
+                <label for="fileCover" class="form-label">Обложка книги</label>
+                <input type="file" accept="image/*" class="form-control" id="fileCover" name="fileCover"
+                    aria-describedby="fileCoverBtn" aria-label="Upload">
+            </div>
+            <div class="mb-3">
+                <label for="fileBook" class="form-label">Книга</label>
+                <input type="file" accept=".pdf,.rtf,.docx,.doc,.zip,.rar,.txt" class="form-control"
+                    id="fileBook" name="fileBook" aria-describedby="filefileBookBtn" aria-label="Upload">
+            </div>
+            <div class="form-check mb-3">
+                <% if (book && book.favorite==='true' ) {%>
+                    <input class="form-check-input" type="checkbox" id="favoriteCheck" checked style="cursor: pointer">
+                    <% } else { %>
+                        <input class="form-check-input" type="checkbox" id="favoriteCheck" style="cursor: pointer">
+                        <% } %>
+                            <label class="form-check-label" for="favoriteCheck" style="cursor: pointer">Добавить в
+                                избранное</label>
+                            <input hidden type="text" id="favorite" name="favorite" value="<%=book.favorite%>">
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                <button class="btn btn-primary btn-lg">
+                    <i class="bi bi-save"></i>
+                    Сохранить
+                </button>
+            </div>
+
+</form>

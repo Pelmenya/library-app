@@ -1,0 +1,42 @@
+<div class="card card_small" style="cursor: pointer; box-shadow: 0 0.1rem 0.2rem 0 rgb(0 0 0 / 5%);"
+    onclick="(() => { if (window) window.location.href = '/view/<%=book.id%>' })()">
+    <div class="row g-0">
+        <div class="col-md-4">
+            <% if (book.fileCover) { %>
+                <img src="/public/books/<%=book.fileCover%>" class="img-fluid rounded-start" alt="<%=book.title%>">
+                <% } %>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <%=book.title%>
+                </h5>
+                <p class="card-text card-text_small">
+                    <%=book.description%>
+                </p>
+                <p class="card-text"><small class="text-muted">
+                        <%=book.authors%>
+                    </small></p>
+                    <% if (cardLarge) { 
+                        if (book.favorite === 'true' ) { %>
+                            <p class="h5" style="color: var(--bs-pink);">В избранном <i class="bi bi-heart-fill"></i></p>
+                            
+                        <% } 
+                        if (book.fileName) { %>
+                            <form class="d-flex align-items-center flex-column" method="GET" action="/api/books/<%=book.id%>/download">
+                                <button
+                                    class="btn btn-danger btn-lg"
+                                >
+                                <i class="bi bi-box-arrow-down"></i>
+                                Скачать <%=book.fileName%>
+                            </button>
+        
+                            </form>
+                            
+                            <% }
+                         } %>
+              
+            </div>
+        </div>
+    </div>
+</div>

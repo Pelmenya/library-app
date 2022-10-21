@@ -4,6 +4,6 @@ const hostname = '0.0.0.0'; // сервер запустим на всех ин�
 
 const { PORT = 3000 } = process.env;
 
-app.listen(3000, hostname, () => {
+app.listen( Number(PORT), hostname, () => {
     console.log(`listening on port ${PORT}! (in folder ${__dirname})`);
 });

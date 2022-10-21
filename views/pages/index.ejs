@@ -10,7 +10,7 @@
                 <h1 class="h5 mb-4">Избранное: </h1>
                 <div class="mb-4 row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between g-3">
                 <% favoriteBooks.forEach((book) => { %>
-                    <%- include('../templates/book-card', {book}); %>
+                    <%- include('../templates/book-card', { book, cardLarge: false }); %>
                     <% }); %>
                 </div>
             <% } %>
@@ -20,7 +20,7 @@
                 </h1>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between g-3">
                 <% books.forEach((book) => { %>
-                    <%- include('../templates/book-card', {book}); %>
+                    <%- include('../templates/book-card', {book, cardLarge: false }); %>
                     <% }); %>
                 </div>
             <% } %>

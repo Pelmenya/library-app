@@ -1,4 +1,4 @@
-export const notFound404Text = '404 | Not Found';
+export const notFound404Text = '404 | Страница не найдена';
 
 export const publicBooksFilesDir = 'public/books';
 

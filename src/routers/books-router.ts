@@ -6,11 +6,11 @@ const { BOOKS, ID, DOWNLOAD } = BooksRoutes;
 
 const booksRouter = Router();
 
-booksRouter.get(`${BOOKS}`, getBooks);
+booksRouter.get(BOOKS, getBooks);
 
 booksRouter.get(`${BOOKS}${ID}`, getBook);
 
-booksRouter.post(`${BOOKS}`, createBook);
+booksRouter.post(BOOKS, createBook);
 
 booksRouter.put(`${BOOKS}${ID}`, updateBook);
 

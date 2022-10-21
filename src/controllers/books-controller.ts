@@ -1,12 +1,14 @@
 import { libraryDB } from '../db/libraryDB';
 import { Request, Response } from 'express';
 import { v4 as uuid } from 'uuid';
-import path from 'path';
 
 import { IBook } from 'types/i-book';
 import { TBookFiles } from 'types/t-book-files';
-import { notFound404Text, publicBooksFilesDir } from '../constants/constants';
+import { publicBooksFilesDir } from '../constants/constants';
 import { deleteBookFile } from '../functions/delete-book-file';
+import { ViewRoutes } from '../routers/routes';
+
+const { NOT_FOUND_404 } = ViewRoutes;
 
 const getBooks = (req: Request, res: Response) => {
     res.status(200);
@@ -22,7 +24,7 @@ const getBook = (req: Request, res: Response) => {
         res.json(book);
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 
 };
@@ -49,7 +51,7 @@ const createBook = (req: Request, res: Response) => {
             res.redirect(`/view/${book.id}`);
         } else {
             res.status(404);
-            res.json(notFound404Text);
+            res.redirect(NOT_FOUND_404);
         }
     }
 };
@@ -94,7 +96,7 @@ const updateBook = (req: Request, res: Response) => {
 
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 };
 
@@ -116,7 +118,7 @@ const deleteBook = (req: Request, res: Response) => {
         res.redirect('/index');
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 };
 
@@ -129,7 +131,7 @@ const downLoadBook = (req: Request, res: Response) => {
         res.download(file, book.fileName);
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 };
 

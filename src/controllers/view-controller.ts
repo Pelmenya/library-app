@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
 import { libraryDB } from '../db/libraryDB';
-import { notFound404Text } from '../constants/constants';
 import { BooksPages } from '../constants/books-pages';
+import { ViewRoutes } from '../routers/routes';
 
 const { INDEX, VIEW, UPDATE, CREATE } = BooksPages;
+const { NOT_FOUND_404 } = ViewRoutes;
 
 export const getIndex = (req: Request, res: Response) => {
     res.render(
@@ -17,12 +18,13 @@ export const getIndex = (req: Request, res: Response) => {
 
 export const getView = (req: Request, res: Response) => {
     const { id } = req.params;
-    if (id) {
-        const book = libraryDB.books.find(item => item.id === id);
+    const book = libraryDB.books.find(item => item.id === id);
+
+    if (id && book) {        
         res.render('pages/view', { book, title: `${VIEW}${book ? book.title : ''}` });
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 };
 
@@ -32,11 +34,11 @@ export const getCreate = (req: Request, res: Response) => {
 
 export const getUpdate = (req: Request, res: Response) => {
     const { id } = req.params;
-    if (id) {
-        const book = libraryDB.books.find(item => item.id === id);
+    const book = libraryDB.books.find(item => item.id === id);
+    if (id && book) {
         res.render('pages/update', { book, title: `${UPDATE}${book ? book.title : ''}` });
     } else {
         res.status(404);
-        res.json(notFound404Text);
+        res.redirect(NOT_FOUND_404);
     }
 };

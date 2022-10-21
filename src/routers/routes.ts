@@ -10,8 +10,10 @@ export enum BooksRoutes {
 }
 
 export enum ViewRoutes {
+    BASE_URL = '/', 
     INDEX = '/index',
     VIEW = '/view',
     CREATE = '/create',
     UPDATE = '/update',
+    NOT_FOUND_404 = '/not-found-404', 
 }

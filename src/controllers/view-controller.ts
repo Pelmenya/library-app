@@ -6,7 +6,13 @@ import { BooksPages } from '../constants/books-pages';
 const { INDEX, VIEW, UPDATE, CREATE } = BooksPages;
 
 export const getIndex = (req: Request, res: Response) => {
-    res.render('pages/index', { libraryDB, title: INDEX });
+    res.render(
+        'pages/index', 
+        { 
+            books: libraryDB.books.filter(item => item.favorite !== 'true'), 
+            favoriteBooks: libraryDB.books.filter(item => item.favorite === 'true'), 
+            title: INDEX,
+        });
 };
 
 export const getView = (req: Request, res: Response) => {
@@ -18,6 +24,10 @@ export const getView = (req: Request, res: Response) => {
         res.status(404);
         res.json(notFound404Text);
     }
+};
+
+export const getCreate = (req: Request, res: Response) => {
+    res.render('pages/create', { book: false, title: `${CREATE}` });
 };
 
 export const getUpdate = (req: Request, res: Response) => {

@@ -1,12 +1,12 @@
 <%- include('../html/html-start.ejs'); -%>
-<%- include('../templates/header', { edit: true }); -%>
+<%- include('../templates/header', { edit: false }); -%>
 <main 
     class="container mr-0 mt-3 mb-3 p-0 d-flex flex-direction-column; justify-content-between;" 
     style="height: calc(100vh - 168px); overflow-y: auto;"
 >
     <div class="container align-items-center" style="max-width: 520px;">
-        <h1 class="h3 mb-4" style="text-align: center;">Редактирование данных о книге</h1>
-        <%- include('../templates/book-form', { method: 'PUT' }); -%>
+        <h1 class="h3 mb-4" style="text-align: center;">Данные о книге</h1>
+        <%- include('../templates/book-form', { method: false }); -%>
     <div>
 </main>
 <%- include('../templates/footer'); -%>

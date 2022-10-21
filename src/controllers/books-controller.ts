@@ -46,7 +46,7 @@ const createBook = (req: Request, res: Response) => {
 
         if (book) {
             res.status(201);
-            res.json(book);
+            res.redirect(`/view/${book.id}`);
         } else {
             res.status(404);
             res.json(notFound404Text);
@@ -65,27 +65,27 @@ const updateBook = (req: Request, res: Response) => {
         let fileBook = libraryDB.books[book].fileBook;
         let fileCover = libraryDB.books[book].fileCover;
         let fileName = libraryDB.books[book].fileName;
-    
+
         if (files.fileBook) {
-            if (fileBook && fileBook !== '1.pdf') {
-                deleteBookFile(`${files.fileBook[0].destination}/${fileBook}`);
+            if (fileBook) {
+                deleteBookFile(fileBook);
             }
 
             fileBook = files.fileBook[0].filename;
             fileName = files.fileBook[0].originalname;
         }
         if (files.fileCover) {
-            if (fileCover && fileCover !== '1.png') {
-                deleteBookFile(`${files.fileCover[0].destination}/${fileCover}`);
+            if (fileCover) {
+                deleteBookFile(fileCover);
             }
             fileCover = files.fileCover[0].filename;
         }
-    
-        libraryDB.books[book] = { 
-            ...libraryDB.books[book], 
-            ...req.body, 
-            fileBook, 
-            fileName, 
+
+        libraryDB.books[book] = {
+            ...libraryDB.books[book],
+            ...req.body,
+            fileBook,
+            fileName,
             fileCover,
         };
 
@@ -101,12 +101,19 @@ const updateBook = (req: Request, res: Response) => {
 const deleteBook = (req: Request, res: Response) => {
     const { id } = req.params;
 
-    const book = libraryDB.books.findIndex((item) => item.id === id);
+    const book = libraryDB.books.find((item) => item.id === id);
 
-    if (book > -1 && req.body) {
+    if (book && req.body) {
+        if (book.fileBook) {
+            deleteBookFile(book.fileBook);
+        }
+        if (book.fileCover) {
+            deleteBookFile(book.fileCover);
+        }
+
         libraryDB.books = libraryDB.books.filter((item) => item.id !== id);
         res.status(200);
-        res.json('Ок');
+        res.redirect('/index');
     } else {
         res.status(404);
         res.json(notFound404Text);
@@ -118,7 +125,7 @@ const downLoadBook = (req: Request, res: Response) => {
     const book = libraryDB.books.find(item => item.id === id);
     if (book?.fileBook) {
         res.status(200);
-        const file = path.join(__dirname, '../..', `${publicBooksFilesDir}/${book.fileBook}`);
+        const file =  `${publicBooksFilesDir}/${book.fileBook}`;
         res.download(file, book.fileName);
     } else {
         res.status(404);

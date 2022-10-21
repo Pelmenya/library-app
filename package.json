@@ -9,9 +9,10 @@
     "build": "./node_modules/.bin/tsc",
     "compile": "tsc --noEmit",
     "validate": "npm-run-all compile test eslint",
-    "prepare": "husky install",
     "dev": "nodemon",
-    "start": "npm run build && npx pm2 start ./build/server.js"
+    "prepare": "husky install",
+    "start-docker": "node server.js",
+    "start": "node -r dotenv/config ./build/server.js"
   },
   "engines": {
     "node": ">=14.17.4",

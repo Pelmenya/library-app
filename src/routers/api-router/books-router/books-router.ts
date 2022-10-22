@@ -1,8 +1,16 @@
-import { createBook, deleteBook, downLoadBook, getBook, getBooks, updateBook } from '../controllers/books-controller';
-import { Router } from 'express';
-import { BooksRoutes } from './routes';
+import {
+    createBook,
+    deleteBook,
+    downLoadBook,
+    getBook,
+    getBooks,
+    updateBook,
+} from '../../../controllers/books-controller';
 
-const { BOOKS, ID, DOWNLOAD } = BooksRoutes;
+import { Router } from 'express';
+import { ROUTES } from '../../../utils/constants/routes';
+
+const { BOOKS, ID, DOWNLOAD } = ROUTES;
 
 const booksRouter = Router();
 

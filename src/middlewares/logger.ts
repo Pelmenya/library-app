@@ -1,4 +1,4 @@
-import { logFilelName, logsDir } from '../constants/constants';
+import { logFilelName, logsDir } from '../utils/constants/constants';
 import { NextFunction, Request, Response } from 'express';
 import fs from 'fs';
 import os from 'os';

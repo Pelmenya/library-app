@@ -1,4 +1,4 @@
-import { publicBooksFilesDir } from '../constants/constants';
+import { publicBooksFilesDir } from '../utils/constants/constants';
 import multer, { diskStorage } from 'multer';
 import { v4 as uuid } from 'uuid';
 

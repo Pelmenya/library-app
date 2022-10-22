@@ -1,4 +1,4 @@
-import { notFound404Text } from '../constants/constants';
+import { notFound404Text } from '../utils/constants/constants';
 import { Request, Response } from 'express';
 
 const notFound404 =  (req: Request, res: Response) => {

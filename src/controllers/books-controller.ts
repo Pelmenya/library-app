@@ -4,11 +4,11 @@ import { v4 as uuid } from 'uuid';
 
 import { IBook } from 'types/i-book';
 import { TBookFiles } from 'types/t-book-files';
-import { publicBooksFilesDir } from '../constants/constants';
-import { deleteBookFile } from '../functions/delete-book-file';
-import { ViewRoutes } from '../routers/routes';
+import { publicBooksFilesDir } from '../utils/constants/constants';
+import { deleteBookFile } from '../utils/functions/delete-book-file';
+import { ROUTES } from '../utils/constants/routes';
 
-const { NOT_FOUND_404 } = ViewRoutes;
+const { NOT_FOUND_404 } = ROUTES;
 
 const getBooks = (req: Request, res: Response) => {
     res.status(200);

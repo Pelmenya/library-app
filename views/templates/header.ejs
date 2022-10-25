@@ -1,59 +1,36 @@
 <header class="container p-3" style="background: var(--bs-orange)">
-    <nav class="d-flex d-flex justify-content-between">
-        <div
-            class="d-flex align-items-center" 
-            style="gap: 16px; cursor: pointer;"
-            onclick="(() => { if (window) window.location.href = '/index' })()"
-        >
-            <img 
-                style="width: 48px; height: 48px;" 
-                src="/public/images/library.svg" 
-                alt="Лого библиотеки"
-            >
+    <nav class="d-flex d-flex justify-content-between header">
+        <div class="d-flex align-items-center" style="gap: 16px; cursor: pointer;"
+            onclick="(() => { if (window) window.location.href = '/index' })()">
+            <img style="width: 48px; height: 48px;" src="/public/images/library.svg" alt="Лого библиотеки">
             <p class="h3 m-0">Библиотека</p>
         </div>
         <div class="d-flex" style="gap: 16px;">
             <button onclick="(() => { if (window) window.location.href = '/index' })()" type="button"
-                class="btn btn-primary btn-lg"
-                data-bs-toggle="tooltip" 
-                data-bs-placement="bottom"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="На главную страницу"
-            >
+                class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip" data-bs-title="На главную страницу">
                 <i class="bi bi-house-door"></i>
             </button>
             <button onclick="(() => { if (window) window.location.href = '/create' })()" type="button"
-                class="btn btn-primary btn-lg"
-                data-bs-toggle="tooltip" 
-                data-bs-placement="bottom"
-                data-bs-custom-class="custom-tooltip"
-                data-bs-title="Добавить новую книгу"
-            >
+                class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                data-bs-custom-class="custom-tooltip" data-bs-title="Добавить новую книгу">
                 <i class="bi bi-plus-square"></i>
             </button>
             <%if (edit) { %>
                 <button onclick="(() => { if (window) window.location.href = '/update/<%=book.id%>' })()" type="button"
-                    class="btn btn-primary btn-lg"
-                    data-bs-toggle="tooltip" 
-                    data-bs-placement="bottom"
-                    data-bs-custom-class="custom-tooltip"
-                    data-bs-title="Редактировать данные о книге <%=book.title%>"
-                >
+                    class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                    data-bs-custom-class="custom-tooltip" data-bs-title="Редактировать данные о книге <%=book.title%>">
                     <i class="bi bi-pencil-square"></i>
                 </button>
                 <form method="POST" action="/api/books/<%=book.id%>">
                     <input hidden type="text" value="DELETE" name="method" id="methodDelete">
-                    <button
-                        class="btn btn-danger btn-lg"
-                        data-bs-toggle="tooltip" 
-                        data-bs-placement="bottom"
+                    <button class="btn btn-danger btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-custom-class="custom-tooltip"
-                        data-bs-title="Удалить книгу <%=book.title%> из библиотеки"
-                    >
+                        data-bs-title="Удалить книгу <%=book.title%> из библиотеки">
                         <i class="bi bi-trash"></i>
                     </button>
                 </form>
-            <%}%>    
+                <%}%>
         </div>
     </nav>
 </header>

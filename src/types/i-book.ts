@@ -7,4 +7,5 @@ export interface IBook {
     fileCover?: string;
     fileName: string;
     fileBook: string;
+    viewCount?: number;
 }

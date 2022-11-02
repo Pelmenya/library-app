@@ -1,0 +1,31 @@
+version: "3.9"
+services: 
+  storage:
+    image: redis:alpine
+    container_name: redis
+    volumes: 
+      - ./data:/data
+  counter:
+    build: ./services/counter
+    container_name: counter
+    volumes: 
+      - ./services/counter:/app
+    ports:
+      - 81:3001
+    environment:      
+      - PORT=3001      
+      - REDIS_URL=redis://storage
+    depends_on:
+      - storage
+  library:
+    build: ./
+    container_name: library
+    volumes:
+      - .:/app
+    ports:
+      - 80:3000
+    environment:      
+      - PORT=3000
+      - COUNTER_URL=http://counter:3001
+    depends_on:
+      - counter

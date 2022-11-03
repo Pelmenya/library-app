@@ -20,7 +20,7 @@
                 </h1>
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 justify-content-between g-3">
                 <% books.forEach((book) => { %>
-                    <%- include('../templates/book-card', {book, cardLarge: false }); %>
+                    <%- include('../templates/book-card', {book, cardLarge: false, viewCount: false}); %>
                     <% }); %>
                 </div>
             <% } %>

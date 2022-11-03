@@ -23,8 +23,7 @@ export const getView = (req: Request, res: Response) => {
 
     if (id && book) {
         postCountViewBook(id, (ctn: number) => {
-            console.log(ctn);
-            res.render('pages/view', { book, title: `${VIEW_TITLE}${book ? book.title : ''}` });
+            res.render('pages/view', { book, title: `${VIEW_TITLE}${book ? book.title : ''}`, viewCount: ctn });
         });
     } else {
         res.status(404);

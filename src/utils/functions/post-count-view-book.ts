@@ -2,7 +2,7 @@ import request from 'request';
 
 const url = String(process.env.COUNTER_URL || 'localhost:3001');
 
-export const postCountViewBook = (bookId: string, cn: (cnt: number) => void) => {
+export const postCountViewBook = (bookId: string, cb: (cnt: number) => void) => {
     // не получилось через http.request
 
     const options = {
@@ -17,8 +17,11 @@ export const postCountViewBook = (bookId: string, cn: (cnt: number) => void) => 
         const { statusCode } = res;
         if (statusCode && !err) {
             if (statusCode >= 200 || statusCode < 300) {
-                cn(Number(body));
+                cb(Number(body));
             }
+        }
+        if (err) {
+            console.log(err);
         }
     });
 };

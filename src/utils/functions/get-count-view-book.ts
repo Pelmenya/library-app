@@ -2,7 +2,7 @@ import http from 'http';
 
 const url = String(process.env.COUNTER_URL || 'localhost:3001');
 
-export const getCountViewBook = (bookId: string, cn: (cnt: number) => void) => {
+export const getCountViewBook = (bookId: string, cb: (cnt: number) => void) => {
     http.get(`${url}/counter/${bookId}`, (res) => {
         const { statusCode } = res;
         if (statusCode) {
@@ -14,7 +14,7 @@ export const getCountViewBook = (bookId: string, cn: (cnt: number) => void) => {
                 });
                 res.on('end', () => {
                     const parseData = JSON.parse(rowData);
-                    cn(Number(parseData));
+                    cb(Number(parseData));
                 });
             } else console.log(`statusCode: ${statusCode}`);
         } else console.log('statusCode: undefined');

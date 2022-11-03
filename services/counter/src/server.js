@@ -11,7 +11,7 @@ const app = express();
 (async () => await client.connect())();
 
 app.get('/', async (req, res) => {
-    res.json(`Привет`)
+    res.json(`Привет`);
 });
 
 app.post('/counter/:bookId/incr', async (req, res) => {

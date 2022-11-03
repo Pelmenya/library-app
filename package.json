@@ -11,7 +11,7 @@
     "validate": "npm-run-all compile test eslint",
     "dev": "nodemon -L",
     "prepare": "husky install",
-    "start-docker": "node server.js",
+    "start-docker": "ts-node server.ts",
     "start": "node -r dotenv/config ./build/server.js"
   },
   "engines": {

@@ -21,7 +21,12 @@
                         if (book.favorite === 'true' ) { %>
                             <p class="h5" style="color: var(--bs-pink);">В избранном <i class="bi bi-heart-fill"></i></p>
                             
-                        <% } 
+                        <% }
+                        
+                        if (viewCount) { %>
+                            <p class="h5" style="color: var(--bs-blue);">Просмотров: <%=viewCount%> <i class="bi bi-eye"></i></i></p>
+                        <% }
+                        
                         if (book.fileName) { %>
                             <form class="d-flex align-items-center flex-column" method="GET" action="/api/books/<%=book.id%>/download">
                                 <button
@@ -35,7 +40,6 @@
                             
                             <% }
                          } %>
-              
             </div>
         </div>
     </div>

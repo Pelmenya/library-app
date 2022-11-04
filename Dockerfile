@@ -1,21 +1,12 @@
 FROM node:18
 
-ENV PORT=3000
+WORKDIR /app
 
-WORKDIR /var/www
+COPY . .
 
-COPY ./build .
+RUN npm i
 
-COPY ./public ./public
-
-COPY ./views ./views 
-
-COPY package.json .
-
-RUN npm i --omit=dev --ignore-scripts
-
-EXPOSE $PORT
+EXPOSE 3000
 
 CMD npm run start-docker
-
 

@@ -13,9 +13,9 @@ const libraryDB: ILibrary = {
                 'магическим реализмом Маркеса и с абсурдностью Беккета.Книга стала не' +
                 'только бестселлером, но и символом литературы нового века, флагом новой' +
                 'культуры.',
-            fileName: '',
-            fileBook: '',
-            fileCover: '',
+            fileName: '1.pdf',
+            fileBook: '1.pdf',
+            fileCover: '1.png',
         },
         {
             id: '2',
@@ -23,9 +23,9 @@ const libraryDB: ILibrary = {
             authors: 'Dick Chain Junior',
             favorite: 'false',
             description: 'Good Flowers',
-            fileName: '',
-            fileBook: '',
-            fileCover: '',
+            fileName: '1.pdf',
+            fileBook: '1.pdf',
+            fileCover: '1.png',
 
         }, {
             id: '3',
@@ -38,9 +38,9 @@ const libraryDB: ILibrary = {
                 'магическим реализмом Маркеса и с абсурдностью Беккета.Книга стала не' +
                 'только бестселлером, но и символом литературы нового века, флагом новой' +
                 'культуры.',
-            fileName: '',
-            fileBook: '',
-            fileCover: '',
+            fileName: '1.pdf',
+            fileBook: '1.pdf',
+            fileCover: '1.png',
         },
         {
             id: '4',

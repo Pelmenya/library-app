@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { Books } from '../models/books';
-import { libraryDB } from '../db/libraryDB';
 import { BOOKS_PAGES_TITLES } from '../utils/constants/books-pages-titles';
 import { ROUTES } from '../utils/constants/routes';
 import { postCountViewBook } from '../utils/functions/post-count-view-book';

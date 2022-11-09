@@ -1,5 +1,7 @@
-import { libraryDB } from '../db/libraryDB';
+import { v4 as uuid } from 'uuid';
+
 import { Request, Response } from 'express';
+import { UpdateQuery } from 'mongoose';
 import { TBookFiles } from 'types/t-book-files';
 import { publicBooksFilesDir } from '../utils/constants/constants';
 import { deleteBookFile } from '../utils/functions/delete-book-file';
@@ -55,7 +57,7 @@ const createBook = (req: Request, res: Response) => {
                 fileCover = files.fileCover[0].filename;
             }
 
-            const newBook = new Books({ ...req.body, fileCover, fileName, fileBook });
+            const newBook = new Books({ id: uuid(), ...req.body, fileCover, fileName, fileBook });
             try {
                 if (newBook) {
                     await newBook.save();
@@ -74,82 +76,112 @@ const createBook = (req: Request, res: Response) => {
 };
 
 const updateBook = (req: Request, res: Response) => {
-    const { id } = req.params;
-    const book = libraryDB.books.findIndex((item) => item.id === id);
+    const handler = async () => {
+        const { id } = req.params;
+        try {
+            const book = await Books.findById(id);
+            const files = req.files as TBookFiles;
 
-    const files = req.files as TBookFiles;
+            if (book && req.body) {
+                let fileBook = book.fileBook;
+                let fileCover = book.fileCover;
+                let fileName = book.fileName;
 
+                if (files.fileBook) {
+                    if (fileBook) {
+                        deleteBookFile(fileBook);
+                    }
 
-    if (book > -1 && req.body) {
-        let fileBook = libraryDB.books[book].fileBook;
-        let fileCover = libraryDB.books[book].fileCover;
-        let fileName = libraryDB.books[book].fileName;
+                    fileBook = files.fileBook[0].filename;
+                    fileName = files.fileBook[0].originalname;
+                }
+                if (files.fileCover) {
+                    if (fileCover) {
+                        deleteBookFile(fileCover);
+                    }
+                    fileCover = files.fileCover[0].filename;
+                }
 
-        if (files.fileBook) {
-            if (fileBook) {
-                deleteBookFile(fileBook);
+                const newBook: UpdateQuery<{
+                    title: string;
+                    description: string;
+                    authors: string;
+                    favorite: string;
+                    fileCover: string;
+                    fileName: string;
+                    fileBook: string;
+                }> | undefined = {
+                    ...req.body,
+                    fileBook,
+                    fileName,
+                    fileCover,
+                };
+
+                try {
+                    const upBook = await Books.findByIdAndUpdate({ _id: id }, newBook);
+                    res.status(200);
+                    res.redirect(`/view/${String(upBook?._id)}`);
+                } catch (e) {
+                    res.status(500).json(e);
+                }
+            } else {
+                res.status(404);
+                res.redirect(NOT_FOUND_404);
             }
-
-            fileBook = files.fileBook[0].filename;
-            fileName = files.fileBook[0].originalname;
+        } catch (e) {
+            res.status(500).json(e);
         }
-        if (files.fileCover) {
-            if (fileCover) {
-                deleteBookFile(fileCover);
-            }
-            fileCover = files.fileCover[0].filename;
-        }
-
-        libraryDB.books[book] = {
-            ...libraryDB.books[book],
-            ...req.body,
-            fileBook,
-            fileName,
-            fileCover,
-        };
-
-        res.status(200);
-        res.redirect(`/view/${id}`);
-
-    } else {
-        res.status(404);
-        res.redirect(NOT_FOUND_404);
-    }
+    };
+    handler().catch(e => console.log(e));
 };
 
 const deleteBook = (req: Request, res: Response) => {
-    const { id } = req.params;
+    const handler = async () => {
+        const { id } = req.params;
+        try {
+            const book = await Books.findByIdAndRemove(id);
+            if (book && req.body) {
+                if (book.fileBook) {
+                    deleteBookFile(book.fileBook);
+                }
+                if (book.fileCover) {
+                    deleteBookFile(book.fileCover);
+                }
 
-    const book = libraryDB.books.find((item) => item.id === id);
-
-    if (book && req.body) {
-        if (book.fileBook) {
-            deleteBookFile(book.fileBook);
+                res.status(200);
+                res.redirect('/index');
+            } else {
+                res.status(404);
+                res.redirect(NOT_FOUND_404);
+            }
+        } catch (e) {
+            res.status(500).json(e);
         }
-        if (book.fileCover) {
-            deleteBookFile(book.fileCover);
-        }
+    };
+    handler().catch(e => console.log(e));
 
-        libraryDB.books = libraryDB.books.filter((item) => item.id !== id);
-        res.status(200);
-        res.redirect('/index');
-    } else {
-        res.status(404);
-        res.redirect(NOT_FOUND_404);
-    }
 };
 
 const downLoadBook = (req: Request, res: Response) => {
-    const { id } = req.params;
-    const book = libraryDB.books.find(item => item.id === id);
-    if (book?.fileBook) {
-        res.status(200);
-        const file = `${publicBooksFilesDir}/${book.fileBook}`;
-        res.download(file, book.fileName);
-    } else {
-        res.status(404);
-        res.redirect(NOT_FOUND_404);
-    }
+    const handler = async () => {
+        const { id } = req.params;
+        try {
+            const book = await Books.findById(id);
+
+            if (book?.fileBook) {
+                res.status(200);
+                const file = `${publicBooksFilesDir}/${book.fileBook}`;
+                res.download(file, book.fileName);
+            } else {
+                res.status(404);
+                res.redirect(NOT_FOUND_404);
+            }
+        } catch (e) {
+            res.status(500).json(e);
+        }
+    };
+
+    handler().catch((e) => console.log(e));
 };
 
 export { getBooks, getBook, createBook, updateBook, deleteBook, downLoadBook };

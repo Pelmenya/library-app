@@ -17,12 +17,12 @@
                 <i class="bi bi-plus-square"></i>
             </button>
             <%if (edit) { %>
-                <button onclick="(() => { if (window) window.location.href = '/update/<%=book.id%>' })()" type="button"
+                <button onclick="(() => { if (window) window.location.href = '/update/<%=book._id%>' })()" type="button"
                     class="btn btn-primary btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                     data-bs-custom-class="custom-tooltip" data-bs-title="Редактировать данные о книге <%=book.title%>">
                     <i class="bi bi-pencil-square"></i>
                 </button>
-                <form method="POST" action="/api/books/<%=book.id%>">
+                <form method="POST" action="/api/books/<%=book._id%>">
                     <input hidden type="text" value="DELETE" name="method" id="methodDelete">
                     <button class="btn btn-danger btn-lg" data-bs-toggle="tooltip" data-bs-placement="bottom"
                         data-bs-custom-class="custom-tooltip"

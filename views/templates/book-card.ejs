@@ -1,5 +1,5 @@
 <div class="card card_small" style="cursor: pointer; box-shadow: 0 0.1rem 0.2rem 0 rgb(0 0 0 / 5%);"
-    onclick="(() => { if (window) window.location.href = '/view/<%=book.id%>' })()">
+    onclick="(() => { if (window) window.location.href = '/view/<%=book._id%>' })()">
     <div class="row g-0">
         <div class="col-md-4">
             <% if (book.fileCover) { %>
@@ -28,7 +28,7 @@
                         <% }
                         
                         if (book.fileName) { %>
-                            <form class="d-flex align-items-center flex-column" method="GET" action="/api/books/<%=book.id%>/download">
+                            <form class="d-flex align-items-center flex-column" method="GET" action="/api/books/<%=book._id%>/download">
                                 <button
                                     class="btn btn-danger btn-lg"
                                 >

@@ -1,4 +1,4 @@
-<form method="post" action="/api/books/<%= method ? book.id: ''%>" name="book" enctype="multipart/form-data">
+<form method="post" action="/api/books/<%= method ? book._id: ''%>" name="book" enctype="multipart/form-data">
     <% if (method) { %>
         <input type="hidden" name="method" value="<%=method%>">
         <% } %>

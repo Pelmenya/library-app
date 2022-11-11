@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { Books } from '../models/books';
-import { BOOKS_PAGES_TITLES } from '../utils/constants/books-pages-titles';
+import { PAGES_TITLES } from '../utils/constants/pages-titles';
 import { ROUTES } from '../utils/constants/routes';
 import { postCountViewBook } from '../utils/functions/post-count-view-book';
 
-const { INDEX_TITLE, VIEW_TITLE, UPDATE_TITLE, CREATE_TITLE } = BOOKS_PAGES_TITLES;
+const { INDEX_TITLE, VIEW_TITLE, UPDATE_TITLE, CREATE_TITLE } = PAGES_TITLES;
 const { NOT_FOUND_404 } = ROUTES;
 
 export const getIndex = (req: Request, res: Response) => {

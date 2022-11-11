@@ -1,0 +1,17 @@
+<%- include('../html/html-start.ejs'); -%>
+<%- include('../templates/header', { edit: false }); -%>
+<main 
+    class="container mr-0 mt-3 mb-3 p-0 d-flex" 
+    style="height: calc(100vh - 168px); overflow-y: auto; flex-direction: column; align-items: center;"
+>
+    <div class="container align-items-center" style="max-width: 520px;">
+        <%- include('../templates/login-form', { postEndPoint: 'login' }); -%>
+        <%- include('../templates/login-form', { postEndPoint: 'signup' }); -%>
+    </div>
+    <button type="button" class="btn btn-outline-info mt-3" style="border: none;" id="nav">
+        Зарегистрироваться
+    </button>
+</main>
+<%- include('../templates/footer'); -%>
+<%- include('./scripts/login.ejs'); -%>
+<%- include('../html/html-end.ejs'); -%>

@@ -1,0 +1,26 @@
+<script>
+    let isFormLogin = true;
+    const { signup, login } = document.forms;
+    const navBtn = document.querySelector('#nav');
+
+    if (signup && login) signup.style.display = 'none';
+
+    const toggle = () => {
+        isFormLogin = !isFormLogin;
+        switch (isFormLogin) {
+            case false:
+                signup.style.display = 'block';
+                login.style.display = 'none';
+                navBtn.textContent = 'Войти';
+                break;
+            case true:
+                signup.style.display = 'none';
+                login.style.display = 'block';
+                navBtn.textContent = 'Зарегистрироваться';
+                break;
+            default:
+                break;
+        }
+    }
+    navBtn.addEventListener('click', toggle);
+</script>

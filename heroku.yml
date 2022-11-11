@@ -1,0 +1,38 @@
+version: "3.9"
+services: 
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+
+  storage:
+    image: redis:alpine
+    container_name: redis
+    volumes: 
+      - ./data:/data
+
+  counter:
+    build: ./services/counter
+    container_name: counter
+    ports:
+      - 81:3001
+    environment:      
+      - PORT=3001      
+      - REDIS_URL=redis://storage
+    depends_on:
+      - storage
+    command: sh -c "cd /app; rm -rf node_modules; npm install; npm run start"
+
+  library:
+    build: ./
+    container_name: library
+    ports:
+      - 80:${PORT}
+    environment:      
+      - PORT=${PORT}
+      - COUNTER_URL=http://counter:3001
+    depends_on:
+      - counter
+    command: sh -c "cd /app; rm -rf node_modules; npm install; npm run start"

@@ -7,11 +7,13 @@
         <input required type="text" class="form-control" id="name<%=postEndPoint%>" name="username"
             placeholder="Введите ваше имя">
     </div>
-    <div class="mb-3">
-        <label for="email<%=postEndPoint%>" class="form-label">Почта</label>
-        <input required type="email" class="form-control" id="email<%=postEndPoint%>" name="email"
-            placeholder="Введите вашу почту">
-    </div>
+    <% if (postEndPoint === 'signup') { %>
+        <div class="mb-3">
+            <label for="email<%=postEndPoint%>" class="form-label">Почта</label>
+            <input required type="email" class="form-control" id="email<%=postEndPoint%>" name="email"
+                placeholder="Введите вашу почту">
+        </div>
+    <% } %>
     <div class="mb-3">
         <label for="password<%=postEndPoint%>" class="form-label">Пароль</label>
         <input required autocomplete="on" type="password" class="form-control" id="password<%=postEndPoint%>"

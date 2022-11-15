@@ -2,6 +2,7 @@
 const USER_ROUTES = {
     USER: '/user',
     LOGIN: '/login',
+    SIGNUP: '/signup',
 };
 
 const BOOKS_ROUTES = {

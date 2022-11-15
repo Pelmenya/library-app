@@ -4,7 +4,7 @@ import { PAGES_TITLES } from '../utils/constants/pages-titles';
 import { ROUTES } from '../utils/constants/routes';
 import { postCountViewBook } from '../utils/functions/post-count-view-book';
 
-const { INDEX_TITLE, VIEW_TITLE, UPDATE_TITLE, CREATE_TITLE } = PAGES_TITLES;
+const { INDEX_TITLE, VIEW_TITLE, UPDATE_TITLE, CREATE_TITLE, SIGNIN_TITLE } = PAGES_TITLES;
 const { NOT_FOUND_404 } = ROUTES;
 
 export const getIndex = (req: Request, res: Response) => {
@@ -68,4 +68,8 @@ export const getUpdate = (req: Request, res: Response) => {
             }
         };
     handler().catch(e => console.log(e));
+};
+
+export const getLogin = (req: Request, res: Response) => {
+    res.render('pages/login', { title: SIGNIN_TITLE });
 };

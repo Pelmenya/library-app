@@ -1,20 +1,27 @@
-import { libraryDB } from '../db/libraryDB';
-import { Request, Response } from 'express';
-import { PAGES_TITLES } from '../utils/constants/pages-titles';
+import { NextFunction, Request, Response } from 'express';
+import { Users } from '../models/users';
+import { ROUTES } from '../utils/constants/routes';
 
-const { SIGNIN_TITLE } = PAGES_TITLES;
+const { NOT_FOUND_404 } = ROUTES;
 
+export const signUpUser = (req: Request, res: Response, next: NextFunction) => {
+    const handler = async () => {
+        const { username, email, password } = req.body;
 
-export const loginUser = (req: Request, res: Response) => {
-    console.log(req.body);
-    const { id = new Date, name, email, password  } = req.body;
+        const newUser = new Users({ username, email, password });
+        try {
+            if (newUser) {
+                await newUser.save();
+                next();
+            } else {
+                res.status(404);
+                res.redirect(NOT_FOUND_404);
+            }
+        } catch (e) {
+            res.status(500).json(e);
+        }
 
-    libraryDB.users.push({ id: id, email: email });
+    };
 
-    res.status(201);
-    res.json(libraryDB.users.find((item) => item.id === id));
-};
-
-export const viewLoginUser = (req: Request, res: Response) => {
-    res.render('pages/login', { title: SIGNIN_TITLE });
+    handler().catch(err => console.log(err));
 };

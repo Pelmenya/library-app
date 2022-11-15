@@ -30,7 +30,17 @@
                         <i class="bi bi-trash"></i>
                     </button>
                 </form>
-                <%}%>
+            <%}%>
+            <%if (user) { %>
+                <button 
+                    onclick="(() => { if (window) window.location.href = '/api/user/me' })()" 
+                    type="button" class="btn btn-outline-success btn-lg" 
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" data-bs-custom-class="custom-tooltip"
+                    data-bs-title="Личный кабинет <%=user.username%>">
+                    <i class="bi bi-person-square"></i>
+                </button>
+            <%}%>
         </div>
     </nav>
 </header>

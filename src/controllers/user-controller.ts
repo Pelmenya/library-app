@@ -25,3 +25,8 @@ export const signUpUser = (req: Request, res: Response, next: NextFunction) => {
 
     handler().catch(err => console.log(err));
 };
+
+export const logoutUser = (req: Request, res: Response) => {
+    req.logout((err) => console.log(err));
+    res.redirect('/');
+};

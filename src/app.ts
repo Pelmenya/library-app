@@ -10,6 +10,8 @@ import { unionFilesFormDataLoader } from './middlewares/union-files-form-data-lo
 import { methodOverride } from './middlewares/method-override';
 import { passport } from './middlewares/passport';
 
+const { SECRET =  'SECRET' } = process.env;
+
 const app = express();
 
 // body-parser
@@ -25,11 +27,11 @@ app.use(logger);
 
 app.set('view engine', 'ejs');
 
-app.use(session({ secret: 'SECRET' }));
+app.use(session({ secret: SECRET }));
 
 app.use(passport.initialize());
-app.use(passport.session());
 
+app.use(passport.session());
 
 app.use('/public', express.static(__dirname + '../..' + '/public'));
 

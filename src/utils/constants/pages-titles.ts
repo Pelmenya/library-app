@@ -5,4 +5,5 @@ export const PAGES_TITLES = {
     CREATE_TITLE: 'Добавление книги',
     SIGNUP_TITLE: 'Регистрация нового пользователя',
     SIGNIN_TITLE: 'Авторизация пользователя',
+    PROFILE: 'Профиль',
 };

@@ -1,0 +1,21 @@
+<%- include('../html/html-start.ejs'); -%>
+<%- include('../templates/header', {edit: false}); -%>
+    <main class="container mr-0 mt-3 mb-3 p-0 d-flex flex-direction-column; justify-content-between;"
+    style="height: calc(100vh - 168px); overflow-y: auto;"
+    >
+        <div class="container align-items-center">
+            <h1 class="h1 mb-8" style="text-align: center;">Личный кабинет</h1>
+            <p class="h4 mb-4" style="text-align: center;">Пользователь: <%=user.username%></p>
+            <p class="h4 mb-4" style="text-align: center;">Почта: <%=user.email%></h1>
+            <form method="POST" action="/api/user/logout">
+                <div class="d-grid gap-2 col-6 mx-auto mt-5">
+                    <button class="btn btn-primary btn-lg">
+                        Выйти
+                        <i class="bi bi-box-arrow-right"></i>            
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+<%- include('../templates/footer'); -%>
+<%- include('../html/html-end.ejs'); -%>

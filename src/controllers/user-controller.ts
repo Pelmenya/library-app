@@ -1,11 +1,32 @@
-import { libraryDB } from '../db/libraryDB';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
+import { Users } from '../models/users';
+import { ROUTES } from '../utils/constants/routes';
 
-export const loginUser =  (req: Request, res: Response) => {
-    const { id = '1', email = 'test1@email.com' } = req.body;
+const { NOT_FOUND_404 } = ROUTES;
 
-    libraryDB.users.push({ id: id, email: email });
+export const signUpUser = (req: Request, res: Response, next: NextFunction) => {
+    const handler = async () => {
+        const { username, email, password } = req.body;
 
-    res.status(201);
-    res.json(libraryDB.users.find((item) => item.id === id));
+        const newUser = new Users({ username, email, password });
+        try {
+            if (newUser) {
+                await newUser.save();
+                next();
+            } else {
+                res.status(404);
+                res.redirect(NOT_FOUND_404);
+            }
+        } catch (e) {
+            res.status(500).json(e);
+        }
+
+    };
+
+    handler().catch(err => console.log(err));
+};
+
+export const logoutUser = (req: Request, res: Response) => {
+    req.logout((err) => console.log(err));
+    res.redirect('/');
 };

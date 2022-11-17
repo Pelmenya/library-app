@@ -2,6 +2,9 @@
 const USER_ROUTES = {
     USER: '/user',
     LOGIN: '/login',
+    SIGNUP: '/signup',
+    ME: '/me',
+    LOGOUT: '/logout',
 };
 
 const BOOKS_ROUTES = {

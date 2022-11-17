@@ -1,0 +1,28 @@
+<form method="post" action="/api/user/<%=postEndPoint%>" name="<%=postEndPoint%>" enctype="multipart/form-data">
+    <h1 class="h3 mb-4 mt-5" style="text-align: center;">
+        <%=postEndPoint==='login'? 'Вход' : 'Регистрация' %>
+    </h1>
+    <div class="mb-3">
+        <label for="name<%=postEndPoint%>" class="form-label">Имя</label>
+        <input required type="text" class="form-control" id="name<%=postEndPoint%>" name="username"
+            placeholder="Введите ваше имя">
+    </div>
+    <% if (postEndPoint === 'signup') { %>
+        <div class="mb-3">
+            <label for="email<%=postEndPoint%>" class="form-label">Почта</label>
+            <input required type="email" class="form-control" id="email<%=postEndPoint%>" name="email"
+                placeholder="Введите вашу почту">
+        </div>
+    <% } %>
+    <div class="mb-3">
+        <label for="password<%=postEndPoint%>" class="form-label">Пароль</label>
+        <input required autocomplete="on" type="password" class="form-control" id="password<%=postEndPoint%>"
+            name="password" placeholder="Введите пароль">
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto mt-5">
+        <button class="btn btn-primary btn-lg">
+            <%=postEndPoint==='login' ? 'Войти' : 'Зарегистрироваться' %>
+                <i class="bi bi-box-arrow-in-right"></i>
+        </button>
+    </div>
+</form>

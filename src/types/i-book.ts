@@ -5,7 +5,7 @@ export interface IBook {
     authors: string;
     favorite: string;
     fileCover?: string;
-    fileName: string;
-    fileBook: string;
+    fileName?: string;
+    fileBook?: string;
     viewCount?: number;
 }

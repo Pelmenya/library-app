@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+import { injectable } from 'inversify';
 import { v4 as uuid } from 'uuid';
 
 import { Request, Response } from 'express';
@@ -9,10 +11,10 @@ import { ROUTES } from '../utils/constants/routes';
 import { Books } from '../models/books';
 
 const { NOT_FOUND_404 } = ROUTES;
-
+@injectable()
 export class BooksController {
 
-    static getBooks = (req: Request, res: Response) => {
+    getBooks = (req: Request, res: Response) => {
         const handler = async () => {
             try {
                 const books = await Books.find();
@@ -25,7 +27,7 @@ export class BooksController {
         handler().catch(e => console.log(e));
     };
 
-    static getBook = (req: Request, res: Response) => {
+    getBook = (req: Request, res: Response) => {
         const handler = async () => {
             const { id } = req.params;
             try {
@@ -44,7 +46,7 @@ export class BooksController {
         handler().catch(e => console.log(e));
     };
 
-    static createBook = (req: Request, res: Response) => {
+    createBook = (req: Request, res: Response) => {
         const handler = async () => {
             if (req.body && req.files) {
                 const files = req.files as TBookFiles;
@@ -77,7 +79,7 @@ export class BooksController {
         handler().catch(e => console.log(e));
     };
 
-    static updateBook = (req: Request, res: Response) => {
+    updateBook = (req: Request, res: Response) => {
         const handler = async () => {
             const { id } = req.params;
             try {
@@ -137,7 +139,7 @@ export class BooksController {
         handler().catch(e => console.log(e));
     };
 
-    static deleteBook = (req: Request, res: Response) => {
+    deleteBook = (req: Request, res: Response) => {
         const handler = async () => {
             const { id } = req.params;
             try {
@@ -164,7 +166,7 @@ export class BooksController {
 
     };
 
-    static downLoadBook = (req: Request, res: Response) => {
+    downLoadBook = (req: Request, res: Response) => {
         const handler = async () => {
             const { id } = req.params;
             try {

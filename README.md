@@ -1,4 +1,2 @@
-# [Сайт Библиотека](https://library-ejs-app.herokuapp.com/)
-
-### library-app
+# library-app
 Library application on Express.js
